@@ -15,7 +15,15 @@ export const Left = x => ({
 export const Either = Right || Left;
 
 export const fromNullable = x => (
-  x !== null
+  x != null
     ? Right(x)
     : Left(null)
 );
+
+export const tryCatch = (f) => {
+  try {
+    return Right(f());
+  } catch (e) {
+    return Left(e);
+  }
+};
