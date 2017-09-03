@@ -1,0 +1,51 @@
+{
+  "name": "js-fp",
+  "version": "1.0.0",
+  "description": "JavaScript Functional Programming Presentation",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WhatIfWeDigDeeper/js-fp.git"
+  },
+  "keywords": [
+    "es2015",
+    "fp",
+    "lodash/fp"
+  ],
+  "author": "Gregory Murray",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/WhatIfWeDigDeeper/js-fp/issues"
+  },
+  "homepage": "https://github.com/WhatIfWeDigDeeper/js-fp#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^7.2.3",
+    "babel-jest": "^20.0.3",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-flow": "^6.23.0",
+    "eslint": "^4.5.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-lodash-fp": "^2.1.3",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "flow-bin": "^0.54.0",
+    "istanbul": "^0.4.5",
+    "jest": "^20.0.4"
+  },
+  "dependencies": {
+    "immutable": "^3.8.1",
+    "lodash": "^4.17.4",
+    "mori": "^0.3.2"
+  },
+  "jest": {
+    "coverageReporters": [
+      "text-summary",
+      "lcov"
+    ]
+  }
+}
