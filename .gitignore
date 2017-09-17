@@ -1,5 +1,5 @@
 # WebStorm
-.idea/*.xml
+.idea/**/*
 
 # Logs
 logs
@@ -59,4 +59,3 @@ typings/
 
 # dotenv environment variables file
 .env
-

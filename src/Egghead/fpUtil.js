@@ -56,6 +56,58 @@ export const semiGroup = {
   First
 };
 
+const Product = x => ({
+  x,
+  concat: ({x: y}) => Product(x * y),
+  inspect: () => `Product(${x})`
+});
+Product.empty = () => Product(1);
+
+const Any = x => ({
+  x,
+  concat: ({x: y}) => Any(x || y),
+  inspect: () => `Any(${x})`
+});
+Any.empty = () => Any(false);
+
+const Max = x => ({
+  x,
+  concat: ({x: y}) => x > y ? Max(x) : Max(y),
+  inspect: () => `Max(${x})`
+});
+Max.empty = () => Max(-Infinity);
+
+const Min = x => ({
+  x,
+  concat: ({x: y}) => x < y ? Min(x) : Min(y),
+  inspect: () => `Min(${x})`
+});
+Min.empty = () => Min(Infinity);
+
+const monoidFirst = either => ({
+  fold: f => f(either),
+  concat: o => either.isLeft
+    ? o
+    : First(either)
+});
+monoidFirst.empty = () => monoidFirst(Left());
+
+const Fn = f => ({
+  fold: f,
+  concat: o =>
+    Fn(x => f(x).concat(o.fold(x)))
+});
+
+export const monoids = {
+  All,
+  Any,
+  First: monoidFirst,
+  Max,
+  Min,
+  Product,
+  Sum,
+};
+
 export const sum = xs =>
   xs.reduce((acc, x) => acc + x, 0);
 
