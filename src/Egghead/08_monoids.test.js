@@ -1,4 +1,9 @@
-import { semiGroup, sum, all, first } from "./fpUtil";
+import {
+  all,
+  semiGroup,
+  sum,
+  first,
+} from "./fpUtil";
 
 describe('SemiGroup -> Monoids by supporting neutral element', () => {
   it('should Sum and skip neutral element, empty', () => {
