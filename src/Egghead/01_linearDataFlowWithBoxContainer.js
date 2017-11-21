@@ -16,7 +16,7 @@ export const nextCharForNumberStringV2Array = str =>
     .map(i => i + 1)
     .map(i => String.fromCharCode(i));
 
-const Box = x => ({
+export const Box = x => ({
   map: f => Box(f(x)),
   fold: f => f(x),
   inspect: () => `Box(${x})`,
