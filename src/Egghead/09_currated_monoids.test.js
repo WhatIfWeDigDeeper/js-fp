@@ -38,7 +38,7 @@ describe('A currated collection of monoids and their uses', () => {
     console.log(result);
     expect(
       result
-    ).toBe(Left(null));
+    ).toEqual(Left(null));
   });
   it('should find first', () => {
     const findFirst = (xs, f) =>
@@ -48,18 +48,17 @@ describe('A currated collection of monoids and their uses', () => {
     const result = findFirst([3,4,5,6,7], x => x > 4);
     expect(
       result
-    ).toBe(Right(5));
+    ).toEqual(Right(5));
   });
   it('should filter out words with vowels', () => {
     const hasVowels = x => !!x.match(/[aeiou]/iu);
     const longWord = x => x.length >= 5;
     const both = Fn(compose(All, hasVowels))
       .concat(Fn(compose(All, longWord)));
-    const result = ['gym', 'bird', 'lilac']
-      .filter(x => both.fold(x).x);
-    console.log(result);
+
     expect(
-      result
+      ['gym', 'bird', 'lilac']
+        .filter(x => both.fold(x).x)
     ).toContain('lilac');
   });
 });
