@@ -1,3 +1,5 @@
+import { Box } from './fpUtil';
+
 export const nextCharForNumberStringImperative = (str) => {
   const trimmed = str.trim();
   const number = parseInt(trimmed);
@@ -15,12 +17,6 @@ export const nextCharForNumberStringV2Array = str =>
     .map(t => parseInt(t, 10))
     .map(i => i + 1)
     .map(i => String.fromCharCode(i));
-
-export const Box = x => ({
-  map: f => Box(f(x)),
-  fold: f => f(x),
-  inspect: () => `Box(${x})`,
-});
 
 export const nextCharForNumberStringV3Box = str =>
   Box(str)

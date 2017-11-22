@@ -1,3 +1,4 @@
+import { Box } from './fpUtil';
 
 const moneyToFloatImperative = str =>
   parseFloat(str.replace(/\$/g, ''));
@@ -13,14 +14,6 @@ export const applyDiscountImperative = (price, discount) => {
   const savings = percentToFloatImperative(discount);
   return cost - cost * savings;
 };
-
-// Box is good at un-nesting expressions, just like composition
-// replaces assignment
-const Box = x => ({
-  map: f => Box(f(x)),
-  fold: f => f(x),
-  inspect: () => `Box(${x})`,
-});
 
 const moneyToFloatBox = str =>
   Box(str.replace(/\$/g, ''))

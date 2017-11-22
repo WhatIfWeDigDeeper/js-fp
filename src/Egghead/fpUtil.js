@@ -1,3 +1,11 @@
+// Box is good at un-nesting expressions, just like composition
+// replaces assignment
+export const Box = x => ({
+  map: f => Box(f(x)),
+  fold: f => f(x),
+  inspect: () => `Box(${x})`,
+});
+
 export const Right = x => ({
   chain: f => f(x),
   map: f => Right(f(x)),
@@ -116,3 +124,7 @@ export const all = xs =>
 
 export const first = xs =>
   xs.reduce((acc, x) => acc);
+
+
+export const identity = (x) => x;
+export const noOp = () => {};
