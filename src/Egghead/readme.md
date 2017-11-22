@@ -20,3 +20,5 @@ Functor - any type with a map method
 * laws:
   * Preserve function composition
     * `fx.map(f).map(g) == fx.map(x => g(f(x))`
+
+.of - lifting a value into our type

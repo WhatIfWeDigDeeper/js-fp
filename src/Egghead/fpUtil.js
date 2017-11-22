@@ -5,6 +5,7 @@ export const Box = x => ({
   fold: f => f(x),
   inspect: () => `Box(${x})`,
 });
+Box.of = (x) => new Box(x);
 
 export const Right = x => ({
   chain: f => f(x),
@@ -12,6 +13,7 @@ export const Right = x => ({
   fold: (f, g) => g(x),
   inspect: () => `Right(${x})`,
 });
+Right.of = (x) => new Right(x);
 
 export const Left = x => ({
   chain: f => Left(x),
@@ -21,6 +23,7 @@ export const Left = x => ({
 });
 
 export const Either = Right || Left;
+Either.of = (x) => new Right(x);
 
 export const fromNullable = x => (
   x != null
