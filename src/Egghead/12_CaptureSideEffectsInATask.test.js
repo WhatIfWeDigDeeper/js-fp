@@ -43,4 +43,23 @@ describe('11: Capture Side Effects in a Task', () => {
           done();
         });
   });
+  it('should capture side effects lazily, not executed until forked', (done) => {
+    const launchMissiles = () =>
+      new Task((rej, res) => {
+        console.log('launch missiles');
+        res("missile");
+      });
+    launchMissiles()
+      .map(x => `${x}!`)
+      .fork(e => {
+          console.log('err', e);
+          expect('should not be called').ToBeFalsy();
+          done();
+        },
+        x => {
+          console.log('success', x);
+          expect(x).toEqual('missile!');
+          done();
+        });
+  });
 });
