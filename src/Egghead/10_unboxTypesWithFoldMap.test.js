@@ -1,7 +1,7 @@
 import { List } from 'immutable-ext';
 import { Sum } from './monoid';
 
-describe('Unbox types with foldMap', () => {
+describe('10: Unbox types with foldMap', () => {
   it('should use reduce and concat', () => {
     const result = [Sum(1), Sum(2), Sum(3)]
       .reduce((acc, x) => acc.concat(x), Sum.empty());

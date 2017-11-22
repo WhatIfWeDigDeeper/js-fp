@@ -1,6 +1,6 @@
 import { semiGroup } from './fpUtil';
 
-describe('semiGroups - types with concat method', () => {
+describe('06: semiGroups - types with concat method', () => {
   describe('concatable semi-groups', () => {
     it('should display associative properties', () => {
       expect('a'.concat('b').concat('c'))

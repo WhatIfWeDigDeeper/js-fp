@@ -1,6 +1,6 @@
 import Task from 'data.task';
 
-describe('11: Capture Side Effects in a Task', () => {
+describe('12: Capture Side Effects in a Task', () => {
   it('should do success path on fork', (done) => {
     Task.of(1)
       .map(x => x + 1)

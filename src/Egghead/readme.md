@@ -13,3 +13,6 @@
  https://egghead.io/lessons/javascript-composable-code-branching-with-either
  
  
+ fold -> removal from a type
+ foldMap -> combined map reduce
+ 

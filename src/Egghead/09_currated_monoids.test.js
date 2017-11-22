@@ -10,7 +10,7 @@ import {
   Sum
 } from './monoid';
 
-describe('A currated collection of monoids and their uses', () => {
+describe('09: A currated collection of monoids and their uses', () => {
   it('should sum non-null values', () => {
     const stats = List.of(
       {page: 'Home', views: 40},

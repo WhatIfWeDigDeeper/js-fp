@@ -1,7 +1,7 @@
 import { Map } from 'immutable-ext';
 import { semiGroup } from './fpUtil';
 
-describe('Object composed entirely of semiGroups is itself a semiGroup, concatenable', () => {
+describe('07: Object composed entirely of semiGroups is itself a semiGroup, concatenable', () => {
   it('should merge two accounts', () => {
     const acct1 = Map({
       name: semiGroup.First('Nico'),

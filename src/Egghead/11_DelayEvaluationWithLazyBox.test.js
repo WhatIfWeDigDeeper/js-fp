@@ -11,11 +11,11 @@ const LazyBox = g => ({
   map: f => LazyBox(() => f(g()))
 });
 
-describe('Delay Evaluation with LazyBox', () => {
+describe('11: Delay Evaluation with LazyBox', () => {
   it('should return box unless fold is called', () => {
     const result = LazyBox(() => '  64  ')
       .map(abba => abba.trim())
-      .map(trimmed => new Number(trimmed))
+      .map(trimmed => Number.parseInt(trimmed, 10))
       .map(number => number + 1)
       .map(x => String.fromCharCode(x));
     expect(
@@ -25,7 +25,7 @@ describe('Delay Evaluation with LazyBox', () => {
   it('should delay evaluation until fold is called', () => {
     const result = LazyBox(() => '  64  ')
       .map(abba => abba.trim())
-      .map(trimmed => new Number(trimmed))
+      .map(trimmed => Number.parseInt(trimmed, 10))
       .map(number => number + 1)
       .map(x => String.fromCharCode(x))
       .fold(x => x.toLowerCase());

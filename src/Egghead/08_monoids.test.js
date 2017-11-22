@@ -5,7 +5,7 @@ import {
   first,
 } from "./fpUtil";
 
-describe('SemiGroup -> Monoids by supporting neutral element', () => {
+describe('08: SemiGroup -> Monoids by supporting neutral element', () => {
   it('should Sum and skip neutral element, empty', () => {
     expect(semiGroup.Sum.empty()
                     .concat(semiGroup.Sum(1))
