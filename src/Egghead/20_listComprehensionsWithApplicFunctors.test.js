@@ -1,6 +1,6 @@
 import { List } from 'immutable-ext';
 
-describe('List comprehensions with Applicative Functors', () => {
+describe('20: List comprehensions with Applicative Functors', () => {
   // imperative loop
   // for(x in xs)
   //   for(y in ys)
