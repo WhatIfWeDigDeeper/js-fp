@@ -24,3 +24,14 @@ Functor - any type with a map method
 Monadic interface
  * .of - lifting a value into our type
  * .chain (or flatMap, bind, >>= )
+
+Natural Transformation
+`
+       map(f)
+F(a) - - - - -> F(b)
+    |         |
+ nt |         | nt
+    |         |
+G(a) - - - - -> G(b)
+       map(f)
+`
