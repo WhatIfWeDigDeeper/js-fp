@@ -12,6 +12,7 @@ Box.of = (x) => new Box(x);
 export const join = m => m.chain(x => x);
 
 export const Right = x => ({
+  apply: r2 => r2.map(x),
   chain: f => f(x),
   map: f => Right(f(x)),
   fold: (f, g) => g(x),
@@ -20,6 +21,7 @@ export const Right = x => ({
 Right.of = (x) => new Right(x);
 
 export const Left = x => ({
+  apply: l2 => Left(x),
   chain: f => Left(x),
   map: f => Left(x),
   fold: (f, g) => f(x),
