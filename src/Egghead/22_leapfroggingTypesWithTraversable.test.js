@@ -6,7 +6,7 @@ const futurize = require('futurize').futurize(Task);
 const readFile = futurize(fs.readFile);
 const files = List(['src/Egghead/fpUtil.js', 'src/Egghead/readme.md']);
 
-describe('Leapfrogging types with Traversable', () => {
+describe('22: Leapfrogging types with Traversable', () => {
   it('should call traverse instead of map to return single Task around list', () => {
     files
       .traverse(Task.of, fn => readFile(fn, 'utf-8'))
