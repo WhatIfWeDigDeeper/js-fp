@@ -1,6 +1,7 @@
 // Box is good at un-nesting expressions, just like composition
 // replaces assignment
 export const Box = x => ({
+  apply: b2 => b2.map(x),
   chain: f => Box(f(x)),
   map: f => Box(f(x)),
   fold: f => f(x),
