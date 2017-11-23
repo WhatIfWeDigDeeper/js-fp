@@ -1,11 +1,14 @@
 // Box is good at un-nesting expressions, just like composition
 // replaces assignment
 export const Box = x => ({
+  chain: f => Box(f(x)),
   map: f => Box(f(x)),
   fold: f => f(x),
   inspect: () => `Box(${x})`,
 });
 Box.of = (x) => new Box(x);
+
+export const join = m => m.chain(x => x);
 
 export const Right = x => ({
   chain: f => f(x),
