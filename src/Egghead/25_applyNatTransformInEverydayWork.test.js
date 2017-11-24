@@ -5,9 +5,9 @@ import {
   identity,
   Left,
   noOp,
-  Right,
-  unexpected
+  Right
 } from './fpUtil';
+import unexpected from './testUtil';
 
 describe('25: Apply Natural Transformations in everyday work', () => {
   describe('nt(x).map(f) == nt(x.map(f)', () => {

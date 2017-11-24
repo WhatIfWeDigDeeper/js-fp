@@ -7,6 +7,7 @@ import {
   noOp,
   Right
 } from './fpUtil';
+import unexpected from './testUtil';
 
 describe('24: Principled type conversions with Natural Transformations, nat(x).map(f) == nat(x.map(f))', () => {
   const eitherToTask = e =>
@@ -16,7 +17,7 @@ describe('24: Principled type conversions with Natural Transformations, nat(x).m
   const first = xs => fromNullable(xs[0]);
   it('should take one functor and convert to another, F a -> G a', () => {
     eitherToTask(Right('nightingale'))
-      .fork(console.error, result => {
+      .fork(unexpected, result => {
         expect(
           result
         ).toEqual('nightingale');
@@ -28,7 +29,7 @@ describe('24: Principled type conversions with Natural Transformations, nat(x).m
         expect(
           err
         ).toEqual('error');
-      }, console.log);
+      }, unexpected);
   });
   it('should convert a box to a Right', () => {
     expect(

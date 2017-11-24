@@ -1,4 +1,5 @@
 import Task from 'data.task';
+import unexpected from './testUtil';
 
 describe('21: Write applicatives for concurrent actions', () => {
   const Db = ({
@@ -13,12 +14,10 @@ describe('21: Write applicatives for concurrent actions', () => {
     Task.of(p1 => p2 => reportHeader(p1, p2))
       .ap(Db.find(20))
       .ap(Db.find(8))
-      .fork(console.error, result => {
+      .fork(unexpected, result => {
         expect(
           result
         ).toEqual('Report: Project 20 compared to Project 8');
       })
-
   });
-
 });

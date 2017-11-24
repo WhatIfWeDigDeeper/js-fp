@@ -3,6 +3,7 @@ import {
   List,
   Map
 } from 'immutable-ext';
+import unexpected from './testUtil';
 
 describe('23: Maintaining structure whilst asyncing', () => {
   const httpGet = (path, params) =>
@@ -10,7 +11,7 @@ describe('23: Maintaining structure whilst asyncing', () => {
   it('should use traverse to result in Task', () => {
     Map({home: '/', about: '/about-us', blog: '/blog'})
       .traverse(Task.of, route => httpGet(route, {}))
-      .fork(console.error, result => {
+      .fork(unexpected, result => {
         expect(
           result.count()
         ).toEqual(3);
@@ -22,12 +23,11 @@ describe('23: Maintaining structure whilst asyncing', () => {
         routes
           .traverse(Task.of, route => httpGet(route, {}))
       )
-      .fork(console.error, result => {
+      .fork(unexpected, result => {
         expect(
           result.toIndexedSeq().toArray().length
         ).toEqual(2);
         done();
       });
   });
-
 });
