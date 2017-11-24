@@ -137,3 +137,8 @@ export const first = xs =>
 
 export const identity = (x) => x;
 export const noOp = () => {};
+
+export const unexpected = err => {
+  console.error(err);
+  expect(true).toBeFalsy();
+};
