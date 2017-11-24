@@ -34,7 +34,12 @@ const relatedArtists = id =>
   getJSON(`https://api.spotify.com/v1/artists/${id}/related-artist`)
     .map(result => result.artists);
 
+const related = name =>
+  findArtist(name)
+    .map(artist => artist.id)
+    .chain(relatedArtists)
+    .map(artists => artists.map(artist => artist.name));
+
 export default {
-  findArtist,
-  relatedArtists
+  related
 };
