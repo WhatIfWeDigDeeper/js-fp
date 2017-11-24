@@ -1,3 +1,4 @@
+import Task from 'data.task';
 // Box is good at un-nesting expressions, just like composition
 // replaces assignment
 export const Box = x => ({
@@ -36,6 +37,8 @@ export const fromNullable = x => (
     ? Right(x)
     : Left(null)
 );
+
+export const eitherToTask = e => e.fold(Task.rejected, Task.of);
 
 export const tryCatch = (f) => {
   try {
@@ -137,3 +140,9 @@ export const first = xs =>
 
 export const identity = (x) => x;
 export const noOp = () => {};
+export const debugLog = result => {
+  console.log('----start-----');
+  console.log(result);
+  console.log('-----end------');
+  return result;
+};

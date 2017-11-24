@@ -34,14 +34,14 @@ describe('26: Isomorphisms, from(to(x)) = x or to(from(x)) = x, and round trip d
     const filterEither = (e, pred) =>
       singleton.from(singleton.to(e).filter(pred));
 
-    it('should convert array with single [a] to Right(a)', () => {
+    it('should convert Right(a) to singleton array [a] filter and convert back to Right(a)', () => {
       const result = filterEither(Right('hello'), x => x.match(/h/ig))
         .map(x => x.toUpperCase());
       expect(
         result.fold(noOp, identity)
       ).toEqual('HELLO');
     });
-    it('should filter and return a Left', () => {
+    it('should convert Right(a) to singleton array [a] filter and convert to Left()', () => {
       const result = filterEither(Right('ello'), x => x.match(/h/ig))
         .map(x => x.toUpperCase());
       expect(

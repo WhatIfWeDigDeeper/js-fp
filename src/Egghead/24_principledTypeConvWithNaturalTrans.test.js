@@ -1,6 +1,6 @@
-import Task from 'data.task';
 import {
   Box,
+  eitherToTask,
   fromNullable,
   identity,
   Left,
@@ -10,8 +10,6 @@ import {
 import unexpected from './testUtil';
 
 describe('24: Principled type conversions with Natural Transformations, nat(x).map(f) == nat(x.map(f))', () => {
-  const eitherToTask = e =>
-    e.fold(Task.rejected, Task.of);
   const boxToEither = b =>
     b.fold(Right);
   const first = xs => fromNullable(xs[0]);

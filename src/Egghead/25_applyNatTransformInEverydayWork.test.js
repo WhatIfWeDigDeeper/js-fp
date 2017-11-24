@@ -1,6 +1,7 @@
 import { List } from 'immutable-ext';
 import Task from 'data.task';
 import {
+  eitherToTask,
   fromNullable,
   identity,
   Left,
@@ -42,7 +43,6 @@ describe('25: Apply Natural Transformations in everyday work', () => {
       find: id => new Task((rej, res) =>
         res(id > 2 ? Right(fake(id)) : Left('not found')))
     });
-    const eitherToTask = e => e.fold(Task.rejected, Task.of);
     it('should flatten tasks', () => {
       Db.find(3)
         .chain(eitherToTask)
