@@ -1,6 +1,10 @@
 import { List } from 'immutable-ext';
 import compose from 'lodash/fp/compose';
-import { fromNullable } from "./fpUtil";
+import {
+  fromNullable,
+  identity,
+  noOp
+} from "./fpUtil";
 import {
   All,
   First,
@@ -21,9 +25,8 @@ describe('09: A currated collection of monoids and their uses', () => {
       fromNullable(x.views)
         .map(Sum), Right(Sum(0))
     );
-    console.log(result);
     expect(
-      result.x
+      result.fold(noOp, identity).x
     ).toEqual(54);
   });
 
@@ -35,20 +38,19 @@ describe('09: A currated collection of monoids and their uses', () => {
     );
     const result = statsWithNull.foldMap(x => fromNullable(x.views)
       .map(Sum), Right(Sum(0)));
-    console.log(result);
     expect(
-      result
-    ).toEqual(Left(null));
+      result.fold(identity)
+    ).toEqual(null);
   });
   it('should find first', () => {
-    const findFirst = (xs, f) =>
+    const findFirst = (xs, pred) =>
       List(xs)
-        .foldMap(x => First(f(x) ? Right(x) : Left()), First.empty())
+        .foldMap(x => First(pred(x) ? Right(x) : Left()), First.empty())
         .fold(x => x);
     const result = findFirst([3,4,5,6,7], x => x > 4);
     expect(
-      result
-    ).toEqual(Right(5));
+      result.fold(noOp, identity)
+    ).toEqual(Right(5).fold(noOp, identity));
   });
   it('should filter out words with vowels', () => {
     const hasVowels = x => !!x.match(/[aeiou]/iu);

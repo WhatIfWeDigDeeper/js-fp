@@ -37,7 +37,9 @@ Min.empty = () => Min(Infinity);
 export const Left = x => ({
   fold: (f, g) => f(x),
   map: f => Left(x),
-  concat: o => Left(x)
+  concat: o => Left(x),
+  isLeft: () => true,
+  inspect: () => `Left(${x})`
 });
 
 export const Right = x => ({
@@ -45,7 +47,8 @@ export const Right = x => ({
   map: f => Right(f(x)),
   concat: o =>
     o.fold(e => Left(e),
-      r => Right(x.concat(r)))
+      r => Right(x.concat(r))),
+  inspect: () => `Right(${x})`
 });
 
 export const First = either => ({
