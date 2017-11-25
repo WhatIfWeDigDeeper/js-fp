@@ -1,13 +1,17 @@
-import fp from 'lodash/fp';
-import _ from 'lodash';
+import compose from 'lodash/fp/compose';
+import curry from 'lodash/fp/curry';
+import curryRight from 'lodash/fp/curryRight';
+import identity from 'lodash/fp/identity';
+import map from 'lodash/fp/map';
+import partial from 'lodash/fp/partial';
 
 const myList = ['1','2','3'];
-const parseIntBase10 = _.curryRight(parseInt)(10);
+const parseIntBase10 = curryRight(parseInt)(10);
 console.log(parseIntBase10('44'));
 
 myList.map(x => parseInt(x,10));
-_.map(myList, parseInt);
-fp.map(parseInt)(myList);
+map(myList, parseInt);
+map(parseInt)(myList);
 
 
 // partial vs currying
@@ -15,10 +19,10 @@ fp.map(parseInt)(myList);
 // Currying takes exactly 1 input, whereas partial application takes 2 (or more) inputs.
 
 const add = (x, y) => x + y;
-const partialAdd5 = _.partial(add, 5);
+const partialAdd5 = partial(add, 5);
 partialAdd5(10);
 
-const curryAdd = _.curry(add);
+const curryAdd = curry(add);
 const curryAdd5 = curryAdd(5);
 curryAdd5(20);
 
@@ -28,9 +32,9 @@ const printToConsole = str => {
   return str;
 };
 const toUpperCase = str => str.toUpperCase();
-const echo = fp.identity;
+const echo = identity;
 
-const printMessage = fp.compose(
+const printMessage = compose(
                         printToConsole,
                         toUpperCase,
                         echo);

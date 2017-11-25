@@ -1,8 +1,8 @@
+import curry from 'lodash/fp/curry';
 import partial from 'lodash/fp/partial';
 import partialRight from 'lodash/fp/partialRight';
 
 describe('partial application', () => {
-
 
   const greet = (greeting, first, last) => (`${greeting}, ${first} ${last}!`);
 
@@ -41,10 +41,10 @@ describe('partial v2', () => {
 // Currying takes exactly 1 input, whereas partial application takes 2 (or more) inputs.
 
 const add = (x, y) => x + y;
-const partialAdd5 = _.partial(add, 5);
+const partialAdd5 = partial(add, 5);
 partialAdd5(10);
 
-const curryAdd = _.curry(add);
+const curryAdd = curry(add);
 const curryAdd5 = curryAdd(5);
 curryAdd5(20);
 

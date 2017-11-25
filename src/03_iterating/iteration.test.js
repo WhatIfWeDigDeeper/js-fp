@@ -28,7 +28,7 @@ describe('for loops vs es5 vs lodash fp', () => {
   });
 
   it('should use lodash standard map, filter, reduce', () => {
-    _.map(myList);
+    map(myList);
     expect()
       .toBe();
   });
@@ -51,12 +51,12 @@ describe('recursion vs. tail recursion', () => {
 });
 
 // const myList = ['1','2','3'];
-// const parseIntBase10 = _.curryRight(parseInt)(10);
+// const parseIntBase10 = curryRight(parseInt)(10);
 // console.log(parseIntBase10('44'));
 //
 // myList.map(x => parseInt(x,10));
-// _.map(myList, parseInt);
-// fp.map(parseInt)(myList);
+// map(myList, parseInt);
+// map(parseInt)(myList);
 //
 //
 // // partial vs currying
@@ -64,10 +64,10 @@ describe('recursion vs. tail recursion', () => {
 // // Currying takes exactly 1 input, whereas partial application takes 2 (or more) inputs.
 //
 // const add = (x, y) => x + y;
-// const partialAdd5 = _.partial(add, 5);
+// const partialAdd5 = partial(add, 5);
 // partialAdd5(10);
 //
-// const curryAdd = _.curry(add);
+// const curryAdd = curry(add);
 // const curryAdd5 = curryAdd(5);
 // curryAdd5(20);
 

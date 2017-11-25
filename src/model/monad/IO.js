@@ -2,12 +2,12 @@
  * IO Monad class
  * Author: Luis Atencio
  */
-const _ = require('lodash');
+import isFunction from 'lodash/fp/isFunction';
 
 exports.IO = class IO {
 
   constructor(effect) {
-    if (!_.isFunction(effect)) {
+    if (!isFunction(effect)) {
       throw 'IO Usage: function required';
     }
     this.effect = effect;
