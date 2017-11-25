@@ -4,8 +4,8 @@
   "description": "JavaScript Functional Programming Presentation",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "lint": "eslint"
+    "test": "./node_modules/.bin/jest",
+    "lint": "./node_modules/.bin/eslint src"
   },
   "repository": {
     "type": "git",
@@ -38,15 +38,10 @@
     "jest": "^20.0.4"
   },
   "dependencies": {
-    "data.either": "^1.5.1",
-    "data.task": "^3.1.1",
-    "fantasy-identities": "0.0.1",
-    "futurize": "^1.2.0",
     "immutable": "^3.8.1",
     "immutable-ext": "^1.1.2",
     "lodash": "^4.17.4",
-    "mori": "^0.3.2",
-    "request": "^2.83.0"
+    "mori": "^0.3.2"
   },
   "jest": {
     "coverageReporters": [

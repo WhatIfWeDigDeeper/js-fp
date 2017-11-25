@@ -2,7 +2,6 @@ import flow from 'lodash/fp/flow';
 import map from 'lodash/fp/map';
 import filter from 'lodash/fp/filter';
 import reduce from 'lodash/fp/reduce';
-import _ from 'lodash';
 
 describe('for loops vs es5 vs lodash fp', () => {
 
