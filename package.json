@@ -4,8 +4,10 @@
   "description": "JavaScript Functional Programming Presentation",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/jest",
-    "lint": "./node_modules/.bin/eslint src"
+    "lint": "./node_modules/.bin/eslint src",
+    "flow": "./node_modules/.bin/flow",
+    "flow-typed": "flow-typed install",
+    "test": "./node_modules/.bin/jest"
   },
   "repository": {
     "type": "git",
@@ -24,8 +26,8 @@
   "homepage": "https://github.com/WhatIfWeDigDeeper/js-fp#readme",
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-eslint": "^7.2.3",
-    "babel-jest": "^20.0.3",
+    "babel-eslint": "^8.0.3",
+    "babel-jest": "^22.0.3",
     "babel-preset-env": "^1.6.1",
     "babel-preset-flow": "^6.23.0",
     "eslint": "^4.5.0",
@@ -33,9 +35,10 @@
     "eslint-plugin-lodash-fp": "^2.1.3",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
-    "flow-bin": "^0.54.0",
+    "flow-bin": "^0.61.0",
     "istanbul": "^0.4.5",
-    "jest": "^20.0.4"
+    "jest": "^22.0.3",
+    "ramda": "^0.25.0"
   },
   "dependencies": {
     "immutable": "^3.8.1",

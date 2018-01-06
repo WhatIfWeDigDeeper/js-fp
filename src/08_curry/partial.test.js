@@ -41,8 +41,8 @@ describe('partial v2', () => {
 // Currying takes exactly 1 input, whereas partial application takes 2 (or more) inputs.
 
 const add = (x, y) => x + y;
-const partialAdd5 = partial(add, 5);
-partialAdd5(10);
+// const partialAdd5 = partial(add, 5);
+// partialAdd5(10);
 
 const curryAdd = curry(add);
 const curryAdd5 = curryAdd(5);
