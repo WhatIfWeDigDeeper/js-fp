@@ -1,7 +1,11 @@
+// @flow
 describe('impure vs. pure functions', () => {
 
   class Product {
-    constructor(name, price) {
+    name: string;
+    price: number;
+
+    constructor(name: string, price: number) {
       this.name = name;
       this.price = price;
     }
@@ -20,13 +24,7 @@ describe('impure vs. pure functions', () => {
     it('should throw error on attempt to update value', () => {
       const product = new Product('iPad Pro', 699.99);
       Object.freeze(product);
-      try {
-        product.price = 1;
-      } catch (err) {
-        expect(err).toBeTruthy();
-        return;
-      }
-      fail('should not hit');
+      expect(() => {product.price = 1;}).toThrow();
     });
   });
 
