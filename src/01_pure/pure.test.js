@@ -1,4 +1,5 @@
 // @flow
+
 describe('impure vs. pure functions', () => {
 
   class Product {
@@ -15,8 +16,7 @@ describe('impure vs. pure functions', () => {
     it('should allow mutation', () => {
       const product = new Product('iPad Pro', 699.99);
       product.price = 1;
-      expect(product.price)
-        .toEqual(1);
+      expect(product.price).toEqual(1);
     });
   });
 
@@ -24,7 +24,9 @@ describe('impure vs. pure functions', () => {
     it('should throw error on attempt to update value', () => {
       const product = new Product('iPad Pro', 699.99);
       Object.freeze(product);
-      expect(() => {product.price = 1;}).toThrow();
+      expect(() => {
+        product.price = 1;
+      }).toThrow();
     });
   });
 
