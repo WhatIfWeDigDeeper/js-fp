@@ -1,7 +1,17 @@
+// @flow
+
 import flow from 'lodash/fp/flow';
 import map from 'lodash/fp/map';
 import filter from 'lodash/fp/filter';
 import reduce from 'lodash/fp/reduce';
+
+import {
+  CartTotal,
+  Price,
+  Product
+} from '../types';
+
+// replace loops with map, filter, reduce, or recursion
 
 describe('for loops vs es5 vs lodash fp', () => {
 
@@ -15,23 +25,21 @@ describe('for loops vs es5 vs lodash fp', () => {
         sum += parseInt(myList[i], 10);
       }
     }
-    expect(sum)
-      .toBe(11);
+    expect(sum).toEqual(11);
   });
 
   it('should use ES5 built-in array methods for map, filter, reduce', () => {
     const sum = myList.map(x => parseInt(x, 10))
                       .filter(x => !Number.isNaN(x))
                       .reduce((acc, x) => acc + x, 0);
-    expect(sum)
-      .toBe(11);
+    expect(sum).toEqual(11);
   });
 
-  it('should use lodash standard map, filter, reduce', () => {
-    map(myList);
-    expect()
-      .toBe();
-  });
+  // it('should use lodash standard map, filter, reduce', () => {
+  //   map(myList);
+  //   expect()
+  //     .toBe();
+  // });
 
   it('lodash fp map, filter, reduce, data last', () => {
     const sum = flow(
@@ -40,14 +48,62 @@ describe('for loops vs es5 vs lodash fp', () => {
       reduce((acc, x) => acc + x, 0)
     )(myList);
 
-    expect(sum)
-      .toBe(11);
+    expect(sum).toEqual(11);
   });
 
 });
 
 describe('recursion vs. tail recursion', () => {
 
+  const _rangeRecurse = (count:number, start:number = 1, ary:Array<number>=[], i:number = 0): Array<number> => {
+    if (ary.length === count) {
+      return ary;
+    }
+    return _rangeRecurse(count, start, [...ary, i + start], i + 1);
+  };
+
+  const range = (count:number, start:number = 1): Array<number> => _rangeRecurse(count, start, [], 0);
+
+
+  it('should create range', () => {
+    expect(range(5)).toEqual([1, 2, 3, 4, 5]);
+    expect(range(3, 10)).toEqual([10, 11, 12])
+  });
+
+  const _rangeReverse = (ary:Array<number>=[], i:number, start:number = 0): Array<number> => {
+    if (i <= start) {
+      return ary;
+    }
+    return _rangeReverse([i - 1, ...ary], i - 1, start);
+  };
+
+  const rangeRev = (count:number, start:number = 1):Array<number> => _rangeReverse([], count + start, start);
+
+  it('should create range in reverse', () => {
+    expect(
+      rangeRev(5)
+    ).toEqual([1, 2, 3, 4, 5]);
+
+    expect(rangeRev(3, 10)).toEqual([10, 11, 12]);
+  });
+
+  // it('should test performance', () => {
+  //   const max = 1000;
+  //   let begin = Date.now();
+  //   for(let i = 0; i < max; i += 1){
+  //     rangeRev(100);
+  //   }
+  //   let end = Date.now();
+  //   console.log(`call to rangeRev took ${end - begin} milliseconds`);
+  //
+  //   let begin2 = Date.now();
+  //   for(let i = 0; i < max; i += 1){
+  //     range(100);
+  //   }
+  //   let end2 = Date.now();
+  //   console.log(`call to range took ${end2 - begin2} milliseconds`);
+  //
+  // });
 });
 
 // const myList = ['1','2','3'];
@@ -114,8 +170,8 @@ describe('recursion vs. tail recursion', () => {
 //				of a nested array.
 //
 
-export const getOfferPrice = (price) => !price.salePrice ? price.listPrice : price.salePrice;
-export const getSubTotal = (products) =>
+export const getOfferPrice = (price:Price):number => !price.salePrice ? price.listPrice : price.salePrice;
+export const getSubTotal = (products:Array<Product>):number =>
   products.map(x => (!x.price.salePrice ? x.price.listPrice : x.price.salePrice) * x.quantity)
     .reduce((acc,b) => acc + b, 0);
 
@@ -125,21 +181,21 @@ export const getSubTotal = (products) =>
 
 
 
-export const sum = (a, b) => a + b;
+export const sum = (a:number, b:number):number => a + b;
 //products.map(x => getOfferPrice(x.price) * x.quantity).reduce(sum)
-export const getOfferPriceWithQuantity = (x) => getOfferPrice(x.price) * x.quantity;
-export const getListPriceWithQuantity = (x) => x.price.listPrice * x.quantity;
+export const getOfferPriceWithQuantity = (p:Product) => getOfferPrice(p.price) * p.quantity;
+export const getListPriceWithQuantity = (p:Product) => p.price.listPrice * p.quantity;
 
 //products.map(getOfferPriceWithQuantity).reduce(sum);
 
 
-export const listTotal = (products) => products.map(getListPriceWithQuantity).reduce(sum);
-export const offerTotal = (products) => products.map(getOfferPriceWithQuantity).reduce(sum);
-export const getSavings = (products) => listTotal(products) - offerTotal(products);
+export const listTotal = (products:Array<Product>):number => products.map(getListPriceWithQuantity).reduce(sum);
+export const offerTotal = (products:Array<Product>):number => products.map(getOfferPriceWithQuantity).reduce(sum);
+export const getSavings = (products:Array<Product>):number => listTotal(products) - offerTotal(products);
 
 
 // [products] -> CartTotal
-export const calculateCartTotal = (products, taxRate = 0.0825) => {
+export const calculateCartTotal = (products:Array<Product>, taxRate:number = 0.0825):CartTotal => {
   const subtotal = getSubTotal(products);
   const tax = subtotal * taxRate;
   const total = subtotal + tax;
@@ -154,13 +210,4 @@ export const calculateCartTotal = (products, taxRate = 0.0825) => {
 // return products.map(fldSelector).reduce(sum);
 // }
 //
-class CartTotal {
-  constructor(subtotal, tax, total, savings=0.0) {
-    this.subtotal = subtotal;
-    this.tax = tax;
-    this.total = total;
-    this.savings = savings;
-    Object.freeze(this);
-  }
 
-}

@@ -1,21 +1,10 @@
 // @flow
 
 import * as R from 'ramda';
-
-type Price = {
-  list: number,
-  sale?: number
-};
-
-class Product {
-  name: string;
-  price: Price;
-
-  constructor(name: string, price: Price) {
-    this.name = name;
-    this.price = price;
-  }
-}
+import {
+  Price,
+  Product
+} from '../types';
 
 describe('const does not protect objects and arrays', () => {
 
