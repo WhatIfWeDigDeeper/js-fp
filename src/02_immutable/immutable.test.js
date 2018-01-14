@@ -4,7 +4,7 @@ import * as R from 'ramda';
 
 type Price = {
   list: number,
-  sale: ?number
+  sale?: number
 };
 
 class Product {
@@ -28,12 +28,14 @@ describe('const does not protect objects and arrays', () => {
   });
 
   it('should not prevent modification of object properties', () => {
-    const price: Price = { list: 39.99, sale: null };
+    const price: Price = { list: 39.99 };
     const prod: Product = new Product('test', price);
 
     prod.price.list = 19.99;
+    prod.price.sale = 1;
 
     expect(price.list).not.toEqual(39.99);
+    expect(price.sale).toEqual(1);
   });
 
   it('should allow mutation', () => {
