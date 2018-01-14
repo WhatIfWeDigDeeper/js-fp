@@ -4,7 +4,7 @@ import * as R from 'ramda';
 
 type Price = {
   list: number,
-  sale: number
+  sale: ?number
 };
 
 class Product {
@@ -19,22 +19,61 @@ class Product {
 
 describe('const does not protect objects and arrays', () => {
 
-  it('should not prevent modification of object properties', () => {
-    const price: Price = { list: 29.99, sale: 24.99};
-    const prod: Product = new Product('test', price);
-
-    prod.price.list = 39.99;
-
-    expect(price.list)
-      .not.toEqual(29.99);
-  });
-
   it('should not prevent modification of array member', () => {
     const ary: Array<number> = [1, 2, 4, 8];
 
     ary.push(16);
 
     expect(ary.length).toEqual(5);
+  });
+
+  it('should not prevent modification of object properties', () => {
+    const price: Price = { list: 39.99, sale: null };
+    const prod: Product = new Product('test', price);
+
+    prod.price.list = 19.99;
+
+    expect(price.list).not.toEqual(39.99);
+  });
+
+  it('should allow mutation', () => {
+    const price: Price = { list: 699.99, sale: 649.99 };
+    const product = new Product('iPad Pro', price);
+
+    product.price.sale = 1;
+
+    expect(product.price.sale).toEqual(1);
+  });
+
+  it('should not throw error on attempt to update value', () => {
+    const price: Price = { list: 699.99, sale: 649.99 };
+    const product = new Product('iPad Pro', price);
+    Object.freeze(product);
+
+    product.price.sale = 1;
+    expect(product.price.sale).toEqual(1);
+  });
+
+  it('should throw error on attempt to update value', () => {
+    const price: Price = { list: 699.99, sale: 649.99 };
+    Object.freeze(price);
+    const product = new Product('iPad Pro', price);
+
+    expect(() => {
+      product.price.sale = 1;
+    }).toThrow();
+  });
+
+  it('should throw error on attempt to update value', () => {
+    const price: Price = { list: 699.99, sale: 649.99 };
+    Object.freeze(price);
+    const product = new Product('iPad Pro', price);
+    Object.freeze(product);
+
+    const price2: Price = { list: 699.99, sale: 1 };
+    expect(() => {
+      product.price = price2;
+    }).toThrow();
   });
 
 });
@@ -50,13 +89,11 @@ describe('Object.merge or ...', () => {
   });
 
   it('should use object spread operator ...', () => {
-
-    const price:Price = {...listPrice, ...salePrice};
+    const price:Price = { ...listPrice, ...salePrice };
 
     expect(price.sale).toEqual(14.95);
   });
 });
-
 
 
 describe('Ramda lenses', () => {
