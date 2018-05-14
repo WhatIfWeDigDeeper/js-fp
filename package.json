@@ -4,6 +4,7 @@
   "description": "JavaScript Functional Programming Presentation",
   "main": "index.js",
   "scripts": {
+    "build": "babel src/ -d lib/",
     "lint": "./node_modules/.bin/eslint src",
     "flow": "./node_modules/.bin/flow",
     "flow-typed": "flow-typed install",
