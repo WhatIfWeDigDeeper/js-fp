@@ -1,3 +1,5 @@
+// @flow
+
 export type Price = {
   list: number,
   sale?: number
