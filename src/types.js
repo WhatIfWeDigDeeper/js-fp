@@ -21,13 +21,16 @@ export class CartTotal {
   total: number;
   savings: number;
 
-  constructor(subtotal:number, tax:number, total:number=0.0, savings:number=0.0) {
+  constructor(
+    subtotal: number,
+    tax: number,
+    total: number = 0.0,
+    savings: number = 0.0
+  ) {
     this.subtotal = subtotal;
     this.tax = tax;
     this.total = total;
     this.savings = savings;
     Object.freeze(this);
   }
-
 }
-

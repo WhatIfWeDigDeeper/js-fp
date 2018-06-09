@@ -1,4 +1,7 @@
 {
+  "extends": [
+    "plugin:flowtype/recommended"
+  ],
   "env": {
     "es6": true
   },
@@ -7,7 +10,8 @@
     "sourceType": "module"
   },
   "plugins": [
-    "lodash-fp"
+    "lodash-fp",
+    "flowtype"
   ],
   "rules": {
     "lodash-fp/consistent-compose": "off",
