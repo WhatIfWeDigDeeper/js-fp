@@ -4,7 +4,7 @@ import compose from 'lodash/fp/compose'
 
 const double = (x: number): number => x + x;
 
-const quadruple = (x: number):number => compose(double, double)(x);
+const quadruple = (x: number): number => compose(double, double)(x);
 
 const multiply = (x: number, y: number): number => x * y;
 
