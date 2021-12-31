@@ -51,9 +51,9 @@
   "scripts": {
     "audit:ci": "npx audit-ci --high",
     "build": "babel src/ -d lib/",
-    "lint": "./node_modules/.bin/eslint src",
-    "flow": "./node_modules/.bin/flow",
+    "lint": "eslint src",
+    "flow": "flow",
     "flow-typed": "flow-typed install",
-    "test": "./node_modules/.bin/jest"
+    "test": "jest"
   }
 }
